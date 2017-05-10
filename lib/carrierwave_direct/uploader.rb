@@ -155,6 +155,10 @@ module CarrierWaveDirect
       [for_file.chomp(extname), version_name].compact.join('_') << extname
     end
 
+    def encryption
+      'AES256'
+    end
+
     def generate_policy(options)
       conditions = []
 
@@ -166,6 +170,7 @@ module CarrierWaveDirect
       conditions << ["starts-with", "$Content-Type", ""] if will_include_content_type
       conditions << {"bucket" => fog_directory}
       conditions << {"acl" => acl}
+      conditions << {"X-Amz-Server-Side-Encryption" => "AES256"}
 
       if use_action_status
         conditions << {"success_action_status" => success_action_status}

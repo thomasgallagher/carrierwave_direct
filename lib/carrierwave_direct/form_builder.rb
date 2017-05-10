@@ -36,7 +36,8 @@ module CarrierWaveDirect
       hidden_field(:signature,               :name => "X-Amz-Signature") <<
       hidden_field(:credential,              :name => "X-Amz-Credential") <<
       hidden_field(:algorithm,               :name => "X-Amz-Algorithm") <<
-      hidden_field(:date,                    :name => "X-Amz-Date")
+      hidden_field(:date,                    :name => "X-Amz-Date") <<
+      hidden_field(:encryption,              :name => 'X-Amz-Server-Side-Encryption')
     end
 
     def content_type_field(options)
